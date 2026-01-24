@@ -50,7 +50,7 @@ export const maths = [
                     id: 2,
                     type: "image",
                     // Concept: Showing a speedometer (Scalar) vs a GPS arrow (Vector)
-                    src: "/public/images/3-speedometer.png",
+                    src: "/images/3-speedometer.png",
                     caption: "A Speedometer is 𝙎𝙘𝙖𝙡𝙖𝙧."
                 },
                 {
@@ -62,7 +62,7 @@ export const maths = [
                     id: 4,
                     type: "image",
                     // Concept: Showing a speedometer (Scalar) vs a GPS arrow (Vector)
-                    src: "/public/images/2-vectorarrow.png",
+                    src: "/images/2-vectorarrow.png",
                     caption: "An arrow - which has direction - is a 𝙑𝙚𝙘𝙩𝙤𝙧."
                 },
                 {

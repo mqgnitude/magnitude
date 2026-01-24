@@ -64,8 +64,8 @@ const Inspector = ({ node, onClose, onLaunch }) => {
                                 <Zap size={24} />
                             </div>
                             <div>
-                                <div className="font-bold text-white group-hover:text-mag-1">Neural Patch Bay</div>
-                                <div className="text-xs text-gray-500">Connect concepts to stabilize the core.</div>
+                                <div className="font-bold text-white group-hover:text-mag-1">Box Connect (under construction)</div>
+                                <div className="text-xs text-gray-500">Connect concepts to their definitions.</div>
                             </div>
                         </button>
 
@@ -78,7 +78,7 @@ const Inspector = ({ node, onClose, onLaunch }) => {
                                 <Target size={24} />
                             </div>
                             <div>
-                                <div className="font-bold text-white group-hover:text-red-400">Exam Simulation</div>
+                                <div className="font-bold text-white group-hover:text-red-400">Exam Simulation (under construction)</div>
                                 <div className="text-xs text-gray-500">Past paper questions under timed pressure.</div>
                             </div>
                         </button>
