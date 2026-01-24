@@ -1,31 +1,27 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Inspector from '../components/Inspector';
-import LessonView from '../components/LessonView'; // <--- Ensure this is imported!
+import LessonView from '../components/LessonView';
+import VectorPiggy from '../components/games/VectorPiggy'; // The Dark Mode Game
 import { SYLLABUS } from '../data/syllabus';
 import { CheckCircle2, Lock, Zap } from 'lucide-react';
 
 const Dashboard = () => {
     const [activeSubject, setActiveSubject] = useState('maths');
     const [selectedNode, setSelectedNode] = useState(null);
+    const [activeMode, setActiveMode] = useState(null);
 
-    // This state was missing! It tracks if we are looking at the grid, lesson, or game.
-    const [activeMode, setActiveMode] = useState(null); // 'lesson' | 'game' | 'exam'
-
-    // Safety Check
-    if (!SYLLABUS || !SYLLABUS[activeSubject]) {
-        return <div className="min-h-screen bg-bg text-white flex items-center justify-center">Data Error</div>;
-    }
-
+    if (!SYLLABUS || !SYLLABUS[activeSubject]) return <div>Data Error</div>;
     const nodes = SYLLABUS[activeSubject];
 
     return (
         <div className="min-h-screen bg-bg text-white font-sans flex flex-col overflow-hidden">
             <Navbar />
 
-            <main className="flex-1 relative overflow-y-auto bg-bg flex flex-col items-center p-8 pt-12">
+            {/* CHANGED: Removed 'items-center', added 'pl-8 md:pl-20' to push tree to left */}
+            <main className="flex-1 relative overflow-y-auto bg-bg flex flex-col items-start p-8 pt-12 pl-8 md:pl-24">
 
-                <div className="max-w-5xl w-full">
+                <div className="w-full max-w-5xl">
 
                     {/* TRACK HEADERS */}
                     {activeSubject === 'maths' && (
@@ -53,8 +49,7 @@ const Dashboard = () => {
                                 className="relative flex flex-col items-center z-10"
                                 style={{ gridRow: node.row, gridColumn: node.col }}
                             >
-
-                                {/* 1. The Main Lesson Node */}
+                                {/* 1. Main Node */}
                                 <button
                                     onClick={() => node.status !== 'locked' && setSelectedNode(node)}
                                     disabled={node.status === 'locked'}
@@ -70,12 +65,16 @@ const Dashboard = () => {
                                     {node.status === 'mastered' && <CheckCircle2 size={14} className="mt-2 text-mag-2" />}
                                 </button>
 
-                                {/* 2. The "Sidecar" Game Node */}
+                                {/* 2. LAB BUTTON (Sidecar) - MOVED TO LEFT */}
                                 {node.heroGame && (
-                                    <div className="absolute -right-8 top-1/2 -translate-y-1/2 translate-x-full flex items-center group/game">
+                                    <div className="absolute -left-8 top-1/2 -translate-y-1/2 -translate-x-full flex flex-row-reverse items-center group/game">
+
+                                        {/* Line connects to right side of button, left side of node */}
                                         <div className={`w-8 h-0.5 ${node.status === 'mastered' ? 'bg-mag-2' : 'bg-gray-800'}`} />
+
                                         <button
                                             disabled={!node.heroGame.unlocked}
+                                            onClick={() => setActiveMode(node.heroGame.id)}
                                             className={`
                         w-14 h-14 rounded-lg border-2 flex flex-col items-center justify-center transition-all hover:scale-110 relative outline-none
                         ${node.heroGame.unlocked
@@ -84,32 +83,31 @@ const Dashboard = () => {
                       `}
                                         >
                                             <Zap size={24} className="fill-current mb-1" />
-                                            <span className="text-[8px] font-mono font-bold leading-none">LAB</span>
+                                            <span className="text-[8px] font-mono font-bold leading-none">GAME</span>
                                         </button>
                                     </div>
                                 )}
-
                             </div>
                         ))}
                     </div>
                 </div>
             </main>
 
-            {/* INSPECTOR PANEL */}
+            {/* INSPECTOR & MODES */}
             {selectedNode && (
                 <Inspector
                     node={selectedNode}
                     onClose={() => setSelectedNode(null)}
-                    onLaunch={(mode) => setActiveMode(mode)} // <--- This now updates the state!
+                    onLaunch={(mode) => setActiveMode(mode)}
                 />
             )}
 
-            {/* LESSON MODE OVERLAY */}
             {activeMode === 'lesson' && selectedNode && (
-                <LessonView
-                    node={selectedNode}
-                    onBack={() => setActiveMode(null)}
-                />
+                <LessonView node={selectedNode} onBack={() => setActiveMode(null)} />
+            )}
+
+            {activeMode === 'vector_piggy' && (
+                <VectorPiggy onExit={() => setActiveMode(null)} />
             )}
 
         </div>

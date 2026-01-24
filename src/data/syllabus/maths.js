@@ -4,7 +4,7 @@ export const maths = [
         id: "alg_basics",
         title: "Basic Algebra",
         row: 1, col: 1,
-        status: "mastered",
+        status: "locked",
         type: "core",
         description: "Solving linear equations and rearranging formulae."
     },
@@ -22,13 +22,14 @@ export const maths = [
         id: "num_frac",
         title: "Fractions",
         row: 1, col: 2,
-        status: "unlocked",
+        status: "locked",
         type: "core"
     },
 
     // --- TRACK 3: GEOMETRY (Column 3) ---
 
     // VECTORS 1.1: The Foundation
+
     {
         id: "vec_1_1",
         title: "Vectors 1.1",
@@ -54,15 +55,15 @@ export const maths = [
                 },
                 {
                     id: 3,
+                    type: "text",
+                    content: "Vectors have both Magnitude 𝙖𝙣𝙙 Direction. We represent them mathematically using Column Vectors."
+                },
+                {
+                    id: 4,
                     type: "image",
                     // Concept: Showing a speedometer (Scalar) vs a GPS arrow (Vector)
                     src: "/public/images/2-vectorarrow.png",
                     caption: "An arrow - which has direction - is a 𝙑𝙚𝙘𝙩𝙤𝙧."
-                },
-                {
-                    id: 4,
-                    type: "text",
-                    content: "Vectors have both Magnitude 𝙖𝙣𝙙 Direction. We represent them mathematically using Column Vectors."
                 },
                 {
                     id: 5,
@@ -100,10 +101,10 @@ export const maths = [
 
         // The Hero Game is attached here as the reward for finishing the basics
         heroGame: {
-            id: "vector_vanguards",
-            title: "Vector Vanguards",
+            id: "vector_piggy", // <--- Updated ID
+            title: "Piggy Algebra",
             type: "physics_puzzle",
-            unlocked: false
+            unlocked: true
         }
     },
 
