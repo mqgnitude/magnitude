@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { UserProvider } from './context/UserContext';
 import Landing from './pages/Landing';
 import Dashboard from './pages/Dashboard';
@@ -18,6 +19,7 @@ function App() {
           {/* We will add /game/:id here later */}
         </Routes>
       </BrowserRouter>
+      <Analytics />
     </UserProvider>
   );
 }
