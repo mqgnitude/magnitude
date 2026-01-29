@@ -5,9 +5,7 @@ import Footer from '../components/Footer';
 import Marquee from '../components/Marquee';
 import { ArrowRight, CheckCircle2, Zap } from 'lucide-react';
 
-const Landing = () => {
-    const navigate = useNavigate();
-
+const Landing = ({ onStart }) => { // <--- 1. Accept the prop
     return (
         <div className="min-h-screen bg-bg text-white font-sans overflow-x-hidden">
             <Navbar />
@@ -40,10 +38,10 @@ const Landing = () => {
                     <div className="flex flex-col md:flex-row items-center gap-3 md:gap-4 justify-center md:justify-start">
                         {/* PRIMARY BUTTON: White text on Purple Button for pop */}
                         <button
-                            onClick={() => navigate('/dashboard')}
-                            className="w-full md:w-auto bg-white text-black hover:bg-purple-50 px-6 py-3 md:px-8 md:py-4 rounded-lg font-bold text-base md:text-lg active:scale-95 transition-all flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]"
+                            onClick={onStart}
+                            className="..." // your existing classes
                         >
-                            Start Free Demo <ArrowRight size={18} />
+                            Start Free Demo
                         </button>
                         <div className="text-xs md:text-sm text-gray-500">
                             (No account required.)

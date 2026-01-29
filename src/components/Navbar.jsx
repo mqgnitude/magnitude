@@ -29,10 +29,11 @@ const Navbar = () => {
                         <button className="hover:text-white transition-colors">Pricing</button>
                         <button
                             onClick={() => navigate('/dashboard')}
-                            className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full text-sm font-bold hover:bg-mag-1 transition-colors"
+                            className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full text-sm font-bold hover:bg-mag-10 transition-colors"
                         >
                             <Zap size={16} className="fill-current" />
                             <span>TRY DEMO</span>
+
                         </button>
                     </div>
 

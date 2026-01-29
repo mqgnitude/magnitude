@@ -6,6 +6,17 @@ export default {
     ],
     theme: {
         extend: {
+            animation: {
+                'shooting-star': 'shoot 5s linear infinite',
+                'shooting-star-delayed': 'shoot 12s linear infinite 5s',
+            },
+            keyframes: {
+                shoot: {
+                    '0%': { transform: 'translateX(0) translateY(0)', opacity: 1 },
+                    '20%': { transform: 'translateX(-500px) translateY(500px)', opacity: 0 },
+                    '100%': { transform: 'translateX(-500px) translateY(500px)', opacity: 0 },
+                }
+            },
             colors: {
                 bg: "#080808",
                 surface: "#121212",
